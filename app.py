@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from spade.agent import Agent
 from spade.behaviour import CyclicBehaviour
 import random
@@ -14,8 +14,10 @@ simulation_state = {
     "camion": None,
     "dias_transcurridos": 0,
     "costo_total": 0,
-    "abastecimiento_total": 0
+    "abastecimiento_total": 0,
+    "status": "stopped",
 }
+
 
 # Clase de agente de cajero
 class CajeroAgent(Agent):
@@ -32,6 +34,7 @@ class CajeroAgent(Agent):
         self.demanda = random.randint(0, self.capacity)
         self.estado = "NO ABASTECIDO"
 
+
 # Clase de agente de camión
 class CamionAgent(Agent):
     def __init__(self, jid, passwd, cajeros):
@@ -43,7 +46,8 @@ class CamionAgent(Agent):
         self.cajeros = cajeros
 
     async def setup(self):
-        self.add_behaviour(AbastecerCajerosBehaviour(self))
+        self.add_behaviour(AbastecerCajerosBehaviour)
+
 
 class AbastecerCajerosBehaviour(CyclicBehaviour):
     def __init__(self, camion_agent):
@@ -62,7 +66,7 @@ class AbastecerCajerosBehaviour(CyclicBehaviour):
         while cajeros_necesitados:
             c = min(
                 cajeros_necesitados,
-                key=lambda c: self.calcular_distancia(self.camion_agent.position, c.position)
+                key=lambda c: self.calcular_distancia(self.camion_agent.position, c.position),
             )
             self.camion_agent.costo_total += self.calcular_distancia(self.camion_agent.position, c.position)
             self.camion_agent.abastecimiento_total += c.demanda
@@ -76,8 +80,14 @@ class AbastecerCajerosBehaviour(CyclicBehaviour):
     def calcular_distancia(self, pos1, pos2):
         return math.sqrt((pos2[0] - pos1[0]) ** 2 + (pos2[1] - pos1[1]) ** 2)
 
+
 # Rutas para Flask
-@app.route('/start', methods=['POST'])
+@app.route("/")
+def index():
+    return render_template("index.html", simulation_state=simulation_state)
+
+
+@app.route("/start", methods=["POST"])
 def start_simulation():
     data = request.get_json()
     cajeros_data = data.get("cajeros", [])
@@ -85,24 +95,30 @@ def start_simulation():
     camion = CamionAgent("camion@localhost", PWD, cajeros)
 
     # Actualizar el estado de la simulación
-    simulation_state["cajeros"] = [{"jid": c.jid, "position": c.position, "estado": c.estado} for c in cajeros]
+    simulation_state["cajeros"] = [
+        {"jid": c.jid, "position": c.position, "estado": c.estado} for c in cajeros
+    ]
     simulation_state["camion"] = {"jid": camion.jid, "position": camion.position}
     simulation_state["dias_transcurridos"] = 0
     simulation_state["costo_total"] = 0
     simulation_state["abastecimiento_total"] = 0
+    simulation_state["status"] = "running"
 
     return jsonify({"message": "Simulación iniciada", "cajeros": simulation_state["cajeros"]})
 
-@app.route('/status', methods=['GET'])
+
+@app.route("/status", methods=["GET"])
 def get_status():
     return jsonify(simulation_state)
 
-@app.route('/stop', methods=['POST'])
+
+@app.route("/stop", methods=["POST"])
 def stop_simulation():
     simulation_state["dias_transcurridos"] = NDIAS  # Marcar como terminada
+    simulation_state["status"] = "stopped"
     return jsonify({"message": "Simulación detenida"})
+
 
 # Ejecutar Flask
 if __name__ == "__main__":
     app.run(debug=True)
-

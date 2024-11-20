@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="app">
+    <button id="start-simulation">Iniciar Simulación</button>
+    <h2>Estado de la Simulación</h2>
+    <p id="simulation-status">Status: {{ status }}</p>
+    <p id="current-day">Día actual: {{ day }}</p>
+    <h2>Datos del Día</h2>
+    <ul id="routes"></ul>
+    <ul id="cashiers"></ul>
+</div>
+{% endblock %}
+
