@@ -4,7 +4,6 @@ from spade.behaviour import CyclicBehaviour
 import random
 import math
 
-# Configuración inicial
 app = Flask(__name__)
 PWD = "12345"
 NDIAS = 10
