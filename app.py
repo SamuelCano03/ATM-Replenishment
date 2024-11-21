@@ -10,7 +10,6 @@ app = Flask(__name__)
 PWD = "12345"
 NDIAS = 10
 
-# Almacenaremos el estado global de la simulación aquí
 simulation_state = {
     "cajeros": [],
     "camion": None,
@@ -20,7 +19,6 @@ simulation_state = {
     "status": "stopped",
 }
 
-# Clase de agente de cajero
 class CajeroAgent(Agent):
     def __init__(self, jid, passwd, position):
         super().__init__(jid, passwd)
@@ -36,7 +34,6 @@ class CajeroAgent(Agent):
         self.estado = "NO ABASTECIDO"
 
 
-# Clase de agente de camión
 class CamionAgent(Agent):
     def __init__(self, jid, passwd, cajeros):
         super().__init__(jid, passwd)
@@ -75,7 +72,6 @@ class AbastecerCajerosBehaviour(CyclicBehaviour):
             cajeros_necesitados.remove(c)
             self.camion_agent.position = c.position
 
-        # Actualizar el estado global después de cada día
         simulation_state["dias_transcurridos"] = self.camion_agent.dia_actual
         simulation_state["costo_total"] = self.camion_agent.costo_total
         simulation_state["abastecimiento_total"] = self.camion_agent.abastecimiento_total
@@ -86,20 +82,19 @@ class AbastecerCajerosBehaviour(CyclicBehaviour):
 
         self.camion_agent.dia_actual += 1
 
-        # Controlar el ciclo de días con un retraso para que la simulación no avance de inmediato
         if self.camion_agent.dia_actual <= NDIAS:
-            await asyncio.sleep(1)  # Ajusta este valor para la velocidad de la simulación
+            await asyncio.sleep(1)
 
         if self.camion_agent.dia_actual > NDIAS:
             simulation_state["status"] = "stopped" 
-            self.kill()  # Detener la simulación cuando se alcanzan los días máximos
+            self.kill()
+            return
 
     def calcular_distancia(self, pos1, pos2):
         return math.sqrt((pos2[0] - pos1[0]) ** 2 + (pos2[1] - pos1[1]) ** 2)
 
 
 
-# Función para manejar la simulación en un hilo
 def run_simulation_async(cajeros, camion):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
@@ -108,22 +103,18 @@ def run_simulation_async(cajeros, camion):
         await asyncio.gather(*(agent.start() for agent in cajeros))
         await camion.start()
 
-        # Espera de simulación por NDIAS
         await asyncio.sleep(NDIAS + 1)
 
-        # Detener agentes
         for cajero in cajeros:
             await cajero.stop()
         await camion.stop()
 
-        # Finalizar simulación
         simulation_state["status"] = "stopped"
         simulation_state["dias_transcurridos"] = NDIAS
 
     loop.run_until_complete(run_simulation())
 
 
-# Rutas para Flask
 @app.route("/")
 def index():
     return render_template("index.html", simulation_state=simulation_state)
@@ -133,13 +124,11 @@ def index():
 def start_simulation():
     global simulation_state
 
-    # Datos de los cajeros pasados en el body de la solicitud
     data = request.get_json()
     cajeros_data = data.get("cajeros", [])
     cajeros = [CajeroAgent(f"cajero{i+1}@localhost", PWD, tuple(c["position"])) for i, c in enumerate(cajeros_data)]
     camion = CamionAgent("camion@localhost", PWD, cajeros)
 
-    # Inicializar estado de simulación
     simulation_state["cajeros"] = [
         {"jid": c.jid, "position": c.position, "estado": c.estado} for c in cajeros
     ]
@@ -149,7 +138,6 @@ def start_simulation():
     simulation_state["abastecimiento_total"] = 0
     simulation_state["status"] = "running"
 
-    # Ejecutar simulación en un hilo separado
     simulation_thread = Thread(target=run_simulation_async, args=(cajeros, camion))
     simulation_thread.start()
 
@@ -163,11 +151,10 @@ def get_status():
 
 @app.route("/stop", methods=["POST"])
 def stop_simulation():
-    simulation_state["dias_transcurridos"] = NDIAS  # Marcar como terminada
+    simulation_state["dias_transcurridos"] = NDIAS 
     simulation_state["status"] = "stopped"
     return jsonify({"message": "Simulación detenida"})
 
 
-# Ejecutar Flask
 if __name__ == "__main__":
     app.run(debug=True)

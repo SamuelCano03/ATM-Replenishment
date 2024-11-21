@@ -5,7 +5,7 @@ from spade.agent import Agent
 from spade.behaviour import CyclicBehaviour
 
 PWD = "12345"
-NDIAS = 10
+NDIAS = 2
 
 class CajeroAgent(Agent):
     def __init__(self, jid, passwd, position):
