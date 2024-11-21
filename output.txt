@@ -1,0 +1,134 @@
+
+
+Día 1 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 38.
+cajero2@localhost reporta una demanda de 1.
+cajero3@localhost reporta una demanda de 75.
+El camión en (0, 0) se dirige a cajero1@localhost en (5, 5). Necesita 38. Monto actual: 25
+El camión en (5, 5) se dirige a cajero3@localhost en (7, 1). Necesita 75. Monto actual: 24
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 38. MONTO PREVIO: 25. MONTO ACTUAL: 32. ABASTECIDO: 45. ESTADO: ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 1. MONTO PREVIO: 79. MONTO ACTUAL: 78. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 75. MONTO PREVIO: 24. MONTO ACTUAL: 40. ABASTECIDO: 91. ESTADO: ABASTECIDO
+
+
+Día 2 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 34.
+cajero2@localhost reporta una demanda de 80.
+cajero3@localhost reporta una demanda de 61.
+El camión en (7, 1) se dirige a cajero3@localhost en (7, 1). Necesita 61. Monto actual: 40
+El camión en (7, 1) se dirige a cajero1@localhost en (5, 5). Necesita 34. Monto actual: 32
+El camión en (5, 5) se dirige a cajero2@localhost en (2, 8). Necesita 80. Monto actual: 78
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 34. MONTO PREVIO: 32. MONTO ACTUAL: 55. ABASTECIDO: 57. ESTADO: ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 80. MONTO PREVIO: 78. MONTO ACTUAL: 68. ABASTECIDO: 70. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 61. MONTO PREVIO: 40. MONTO ACTUAL: 44. ABASTECIDO: 65. ESTADO: ABASTECIDO
+
+
+Día 3 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 61.
+cajero2@localhost reporta una demanda de 65.
+cajero3@localhost reporta una demanda de 71.
+El camión en (2, 8) se dirige a cajero2@localhost en (2, 8). Necesita 65. Monto actual: 68
+El camión en (2, 8) se dirige a cajero1@localhost en (5, 5). Necesita 61. Monto actual: 55
+El camión en (5, 5) se dirige a cajero3@localhost en (7, 1). Necesita 71. Monto actual: 44
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 61. MONTO PREVIO: 55. MONTO ACTUAL: 84. ABASTECIDO: 90. ESTADO: ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 65. MONTO PREVIO: 68. MONTO ACTUAL: 73. ABASTECIDO: 70. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 71. MONTO PREVIO: 44. MONTO ACTUAL: 67. ABASTECIDO: 94. ESTADO: ABASTECIDO
+
+
+Día 4 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 49.
+cajero2@localhost reporta una demanda de 33.
+cajero3@localhost reporta una demanda de 47.
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 49. MONTO PREVIO: 84. MONTO ACTUAL: 35. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 33. MONTO PREVIO: 73. MONTO ACTUAL: 40. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 47. MONTO PREVIO: 67. MONTO ACTUAL: 20. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+
+
+Día 5 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 43.
+cajero2@localhost reporta una demanda de 46.
+cajero3@localhost reporta una demanda de 0.
+El camión en (7, 1) se dirige a cajero1@localhost en (5, 5). Necesita 43. Monto actual: 35
+El camión en (5, 5) se dirige a cajero2@localhost en (2, 8). Necesita 46. Monto actual: 40
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 43. MONTO PREVIO: 35. MONTO ACTUAL: 90. ABASTECIDO: 98. ESTADO: ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 46. MONTO PREVIO: 40. MONTO ACTUAL: 45. ABASTECIDO: 51. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 0. MONTO PREVIO: 20. MONTO ACTUAL: 20. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+
+
+Día 6 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 65.
+cajero2@localhost reporta una demanda de 56.
+cajero3@localhost reporta una demanda de 25.
+El camión en (2, 8) se dirige a cajero2@localhost en (2, 8). Necesita 56. Monto actual: 45
+El camión en (2, 8) se dirige a cajero1@localhost en (5, 5). Necesita 65. Monto actual: 90
+El camión en (5, 5) se dirige a cajero3@localhost en (7, 1). Necesita 25. Monto actual: 20
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 65. MONTO PREVIO: 90. MONTO ACTUAL: 83. ABASTECIDO: 58. ESTADO: ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 56. MONTO PREVIO: 45. MONTO ACTUAL: 38. ABASTECIDO: 49. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 25. MONTO PREVIO: 20. MONTO ACTUAL: 87. ABASTECIDO: 92. ESTADO: ABASTECIDO
+
+
+Día 7 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 19.
+cajero2@localhost reporta una demanda de 63.
+cajero3@localhost reporta una demanda de 7.
+El camión en (7, 1) se dirige a cajero2@localhost en (2, 8). Necesita 63. Monto actual: 38
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 19. MONTO PREVIO: 83. MONTO ACTUAL: 64. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 63. MONTO PREVIO: 38. MONTO ACTUAL: 36. ABASTECIDO: 61. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 7. MONTO PREVIO: 87. MONTO ACTUAL: 80. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+
+
+Día 8 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 29.
+cajero2@localhost reporta una demanda de 49.
+cajero3@localhost reporta una demanda de 51.
+El camión en (2, 8) se dirige a cajero2@localhost en (2, 8). Necesita 49. Monto actual: 36
+El camión en (2, 8) se dirige a cajero3@localhost en (7, 1). Necesita 51. Monto actual: 80
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 29. MONTO PREVIO: 64. MONTO ACTUAL: 35. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 49. MONTO PREVIO: 36. MONTO ACTUAL: 44. ABASTECIDO: 57. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 51. MONTO PREVIO: 80. MONTO ACTUAL: 65. ABASTECIDO: 36. ESTADO: ABASTECIDO
+
+
+Día 9 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 51.
+cajero2@localhost reporta una demanda de 57.
+cajero3@localhost reporta una demanda de 32.
+El camión en (7, 1) se dirige a cajero1@localhost en (5, 5). Necesita 51. Monto actual: 35
+El camión en (5, 5) se dirige a cajero2@localhost en (2, 8). Necesita 57. Monto actual: 44
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 51. MONTO PREVIO: 35. MONTO ACTUAL: 38. ABASTECIDO: 54. ESTADO: ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 57. MONTO PREVIO: 44. MONTO ACTUAL: 59. ABASTECIDO: 72. ESTADO: ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 32. MONTO PREVIO: 65. MONTO ACTUAL: 33. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+
+
+Día 10 - El camión inicia su recorrido.
+cajero1@localhost reporta una demanda de 35.
+cajero2@localhost reporta una demanda de 41.
+cajero3@localhost reporta una demanda de 79.
+El camión en (2, 8) se dirige a cajero3@localhost en (7, 1). Necesita 79. Monto actual: 33
+
+Reporte del día {self.camion_agent.dia_actual}:
+CAJERO: cajero1@localhost DEMANDA: 35. MONTO PREVIO: 38. MONTO ACTUAL: 3. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero2@localhost DEMANDA: 41. MONTO PREVIO: 59. MONTO ACTUAL: 18. ABASTECIDO: 0. ESTADO: NO ABASTECIDO
+CAJERO: cajero3@localhost DEMANDA: 79. MONTO PREVIO: 33. MONTO ACTUAL: 22. ABASTECIDO: 68. ESTADO: ABASTECIDO
+
+Simulación terminada. El camión ha abastecido por 10 días.
+
+Costo total de transporte: 80.92406277858726
+Total de abastecimiento: 1278

@@ -16,14 +16,14 @@ class CajeroAgent(Agent):
         self.monto = random.randint(int(self.min_coef*self.capacity),self.capacity)
         self.prev = 0
         self.estado = "NO ABASTECIDO"
-        self.demanda = random.randint(self.monto,self.capacity)  # Generar entre 50% y 100% de la capacidad
+        self.demanda = random.randint(self.monto,self.capacity)
 
     async def setup(self):
         print(f"{self.jid} está en la posición {self.position} y necesita abastecimiento de {self.demanda}%")
         
     def actualizar_necesidad(self):
         self.estado = "NO ABASTECIDO"
-        self.demanda = random.randint(0,self.capacity)
+        self.demanda = random.randint(0,int(0.8*self.capacity))
 
 class CamionAgent(Agent):
     def __init__(self, jid, passwd, cajeros):
